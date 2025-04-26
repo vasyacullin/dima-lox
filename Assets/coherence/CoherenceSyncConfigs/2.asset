@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: 
   id: 97903229b5c7fa64880164e8b49d8792
-  selfId: 
+  selfId: 539463ce3f8d4d94f82324aaa9ee5df7
   editorTarget: {fileID: 4934857197790550157, guid: 97903229b5c7fa64880164e8b49d8792,
     type: 3}
   includeInSchema: 1
