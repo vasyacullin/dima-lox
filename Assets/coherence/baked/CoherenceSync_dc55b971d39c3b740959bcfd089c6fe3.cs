@@ -23,7 +23,6 @@ namespace Coherence.Generated
     using Coherence.Log;
     using Logger = Coherence.Log.Logger;
     using UnityEngine.Scripting;
-    
     [UnityEngine.Scripting.Preserve]
     public class Binding_dc55b971d39c3b740959bcfd089c6fe3_6bf0ae7388a14851a419eeb7d6ae137d : PositionBinding
     {   
@@ -90,7 +89,7 @@ namespace Coherence.Generated
         
         private readonly Dictionary<string, Binding> bakedValueBindings = new Dictionary<string, Binding>()
         {
-            ["6bf0ae7388a14851a419eeb7d6ae137d"] = new Binding_dc55b971d39c3b740959bcfd089c6fe3_6bf0ae7388a14851a419eeb7d6ae137d(),
+			["6bf0ae7388a14851a419eeb7d6ae137d"] = new Binding_dc55b971d39c3b740959bcfd089c6fe3_6bf0ae7388a14851a419eeb7d6ae137d(),
         };
         
         private Dictionary<string, Action<CommandBinding, CommandsHandler>> bakedCommandBindings = new Dictionary<string, Action<CommandBinding, CommandsHandler>>();
@@ -129,32 +128,29 @@ namespace Coherence.Generated
             }
         }
         
-        public override List<ICoherenceComponentData> CreateEntity(bool usesLodsAtRuntime, string archetypeName, AbsoluteSimulationFrame simFrame)
+        public override void CreateEntity(bool usesLodsAtRuntime, string archetypeName, AbsoluteSimulationFrame simFrame, List<ICoherenceComponentData> components)
         {
+
             if (!usesLodsAtRuntime)
             {
-                return null;
+                return;
             }
             
             if (Archetypes.IndexForName.TryGetValue(archetypeName, out int archetypeIndex))
             {
-                var components = new List<ICoherenceComponentData>()
-                {
-                    new ArchetypeComponent
+                components.Add(new ArchetypeComponent
                     {
                         index = archetypeIndex,
                         indexSimulationFrame = simFrame,
                         FieldsMask = 0b1
                     }
-                };
+                );
 
-                return components;
+                return;                
             }
     
             logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncCreateEntityMissingArchetype,
                 $"Unable to find archetype {archetypeName} in dictionary. Please, bake manually (coherence > Bake)");
-            
-            return null;
         }
         
         public override void Dispose()
